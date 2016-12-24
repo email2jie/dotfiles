@@ -19,7 +19,8 @@ FILES = [
   "railsrc",
   "rspec",
   "rubocop.yml",
-  "sqliterc"
+  "sqliterc",
+  "tmux.conf"
 ].freeze
 
 class Dotfile
