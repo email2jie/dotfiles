@@ -479,6 +479,15 @@ set path=$PWD/**
 
 runtime macros/matchit.vim
 set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+filetype plugin indent on
+
 if has("autocmd")
       filetype indent plugin on
 endif
