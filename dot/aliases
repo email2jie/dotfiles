@@ -35,9 +35,9 @@ alias railspid='lsof -wni tcp:3000'
 #update node
 #allows vi commands at terminal
 #set -o vi 
-alias aws1='ssh -i ~/Documents/Bellenista/AWS/Key\ Pairs/bellenista-key-pair-westcali.pem deploy@ec2-54-153-42-235.us-west-1.compute.amazonaws.com'
-alias aws3='ssh -i ~/Documents/Bellenista/AWS/Key\ Pairs/bellenista-key-pair-westcali.pem deploy@ec2-54-183-56-1.us-west-1.compute.amazonaws.com'
-alias aws='ssh -i ~/Documents/Bellenista/AWS/Key\ Pairs/bellenista-key-pair-westcali.pem deploy@ec2-52-53-254-165.us-west-1.compute.amazonaws.com'
+alias aws1='ssh -i ~/.ssh/AWS/Key\ Pairs/bellenista-key-pair-westcali.pem deploy@ec2-54-153-42-235.us-west-1.compute.amazonaws.com'
+alias aws3='ssh -i ~/.ssh/AWS/Key\ Pairs/bellenista-key-pair-westcali.pem deploy@ec2-54-183-56-1.us-west-1.compute.amazonaws.com'
+alias aws='ssh -i ~/.ssh/AWS/Key\ Pairs/bellenista-key-pair-westcali.pem deploy@ec2-52-53-254-165.us-west-1.compute.amazonaws.com'
 alias pihole='ssh 192.168.1.50'
 alias raspi='ssh 192.168.1.51'
 alias update='softwareupdate -iva'
