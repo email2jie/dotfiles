@@ -20,7 +20,8 @@ FILES = [
   "rspec",
   "rubocop.yml",
   "sqliterc",
-  "tmux.conf"
+  "tmux.conf",
+  "inputrc"
 ].freeze
 
 class Dotfile
