@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RUBY_VERSION='2.3.1'
+RUBY_VERSION='2.3.2'
 NODE_VERSION='6.2.1'
 
 RED='\033[0;31m'
