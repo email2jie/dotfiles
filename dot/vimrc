@@ -485,6 +485,8 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
+Plugin 'christoomey/vim-tmux-navigator'
+
 
 filetype plugin indent on
 
