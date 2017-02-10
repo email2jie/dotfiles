@@ -128,10 +128,10 @@ colorscheme solarized
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
+  set guioptions-=T
+  set guioptions+=e
+  set t_Co=256
+  set guitablabel=%M\ %t
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -229,9 +229,9 @@ endtry
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
 " Remember info about open buffers on close
 set viminfo^=%
 
@@ -345,60 +345,60 @@ endfunction
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
+  exe "menu Foo.Bar :" . a:str
+  emenu Foo.Bar
+  unmenu Foo
 endfunction
 
 function! VisualSelection(direction) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
+  let l:saved_reg = @"
+  execute "normal! vgvy"
 
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
+  let l:pattern = escape(@", '\\/.*$^~[]')
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
 
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
+  if a:direction == 'b'
+    execute "normal ?" . l:pattern . "^M"
+  elseif a:direction == 'gv'
+    call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+  elseif a:direction == 'replace'
+    call CmdLine("%s" . '/'. l:pattern . '/')
+  elseif a:direction == 'f'
+    execute "normal /" . l:pattern . "^M"
+  endif
 
-    let @/ = l:pattern
-    let @" = l:saved_reg
+  let @/ = l:pattern
+  let @" = l:saved_reg
 endfunction
 
 
 " Returns true if paste mode is enabled
 function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
+  if &paste
+    return 'PASTE MODE  '
+  en
+  return ''
 endfunction
 
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
+  let l:currentBufNum = bufnr("%")
+  let l:alternateBufNum = bufnr("#")
 
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
+  if buflisted(l:alternateBufNum)
+    buffer #
+  else
+    bnext
+  endif
 
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
+  if bufnr("%") == l:currentBufNum
+    new
+  endif
 
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
+  if buflisted(l:currentBufNum)
+    execute("bdelete! ".l:currentBufNum)
+  endif
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -423,18 +423,27 @@ let g:js_context_colors_highlight_function_names=1
 let g:js_context_colors_jsx=1
 
 let g:ycm_add_preview_to_completeopt=0
-let g:jsx_ext_required = 1 " Allow JSX in normal JS files
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 let g:ycm_confirm_extra_conf=0
 set completeopt-=preview
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
 "do syntastic on file load; slows down vim startup
-"let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
 
 "nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
-"highlight YcmErrorLine guibg=#3f0000
+highlight YcmErrorLine guibg=#3f0000
 "remove _ from vim keywords
 set iskeyword-=_
 "always copy to clipboard - require xclipboard; vim --versions
-set clipboard=unnamedplus
+
+if $TMUX ==''
+  set clipboard+=unnamed
+endif
 "disable annoying q: and ex mode
 map q: <nop>
 nnoremap q: <nop>
@@ -485,13 +494,14 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'christoomey/vim-tmux-navigator'
 
 
 filetype plugin indent on
 
 if has("autocmd")
-      filetype indent plugin on
+  filetype indent plugin on
 endif
 "toggle comment; require nerdcomment
 nnoremap ,, :call NERDComment(0,"toggle")<CR>
@@ -506,7 +516,6 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-map <C-n> :NERDTree belle
 let g:ctrlp_working_path_mode = 'ra'
 let g:nerdtree_tabs_open_on_console_startup=1
 
