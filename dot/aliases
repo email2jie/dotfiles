@@ -52,7 +52,7 @@ bind '"\e[B": history-search-forward'
 
 
 rnative () {
-  gc https://github.com/FormidableLabs/formidable-react-native-app-boilerplate.git "$1"
+  gc https://github.com/bartonhammond/snowflake.git "$1"
   cd "$1"
   npm install
 }
