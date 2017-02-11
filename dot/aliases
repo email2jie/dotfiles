@@ -14,7 +14,6 @@ alias gs='git status'
 alias gl='git log'
 alias gd='git diff'
 alias gc='git clone'
-alias rnative='gc https://github.com/FormidableLabs/formidable-react-native-app-boilerplate.git'
 alias droid='react-native run-android'
 alias bes='bundle exec rspec'
 alias besf='bundle exec rspec --fail-fast'
@@ -50,6 +49,13 @@ bind '"\e[6": history-search-forward'
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 #scripts
+
+
+rnative () {
+  gc https://github.com/FormidableLabs/formidable-react-native-app-boilerplate.git "$1"
+  cd "$1"
+  npm install
+}
 
 belle () {
   cd ~/Documents/Bellenista/BelleProject/BelleApp
